@@ -1,3 +1,8 @@
+body{
+  margin: 0 0 0 0;
+  font-family: 'Poppins', sans-serif;
+
+}
 .container{
   display:grid;
   grid-template-columns: 40% 60%;
@@ -7,7 +12,6 @@
   "navigation navigation"
   "picture text"
   "footer footer";
-  padding: 10px 10px 10px 10px;
 }
 
 @media (max-width: 600px){
@@ -31,30 +35,30 @@
 
   #nav-container li{
     flex-basis: 100%;
-
-
   }
 }
 
 header{
   text-align: center;
   grid-area: header;
-  background-color:#162656 ;
-  color:#7986AC ;
+  background-color:#001a33;
+  color:#ffffff;
+  height: 150px
 
 }
 
 nav{
   grid-area: navigation;
-  background-color:#868BAA ;
-  padding: 0;
+  background-color:#001a33 ;
+  padding: 35px;
+  overflow: hidden;
 }
 
 #nav-container{
   display: flex;
   list-style-type:none;
   padding:0;
-  font-size: 25px;
+  font-size: 22px;
 
 }
 
@@ -102,12 +106,13 @@ nav{
   justify-content: center;
   }
 
+h3{
+  font-size: 20px;
+}
 .text-content{
   width:90%;
-  font-size: 20px;
+  font-size: 16px;
   padding-left: 20px;
-
-
 }
 
 
@@ -115,9 +120,9 @@ nav{
 footer{
   grid-area: footer;
   text-align: center;
-  background-color: #7986AC ;
-  color: #061339;
-  height: 50px;
+  background-color: #001a33 ;
+  color: #ffffff;
+  height: 70px;
   display:flex;
   flex-direction: column;
   justify-content: center;
@@ -153,11 +158,11 @@ figure{
 
 
 a{
-  color:#2F4073 ;
+  color:#ffffff ;
 }
 
 main a{
-  color:#7986AC ;
+  color:#ffffff ;
   font-style: italic;
 }
 
