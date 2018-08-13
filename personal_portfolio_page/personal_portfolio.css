@@ -129,6 +129,12 @@ p{
     font-size: 20px;
 }
 
+#projects a:visited {
+    color: #f2f2f2;  
+}
+
+
+
 #projects p{
   font-weight: bold;
 }
