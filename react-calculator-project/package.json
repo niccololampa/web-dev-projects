@@ -21,5 +21,21 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "husky": "^1.1.4",
+    "lint-staged": "^8.0.4",
+    "pretty-quick": "^1.8.0"
+  },
+  "precommit": "NODE_ENV=production lint-staged",
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "pretty-quick --staged",
+      "eslint src/ --fix",
+      "git add"
+    ]
+  }
 }

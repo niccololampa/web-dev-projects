@@ -1,0 +1,36 @@
+.keyboard {
+  display: grid;
+  grid-template-columns: 75% 25%;
+  width: 100%;
+  height: 83.33%;
+}
+
+.column-one {
+  display: grid;
+  grid-template-rows: 20% 20% 20% 20% 20%;
+}
+
+.column-two {
+  display: grid;
+  grid-template-rows: 20% 40% 40%;
+}
+
+.normal-rows {
+  display: grid;
+  grid-template-columns: 33.3% 33.3% 33.3%;
+}
+
+.bottom-row {
+  display: grid;
+  grid-template-columns: 66.6% 33.3%;
+}
+
+button {
+  border: 2.5px solid black;
+  font-size: 25px;
+}
+
+.clear {
+  background-color: red;
+  color: white;
+}
