@@ -19,6 +19,7 @@
   height: 100%;
   overflow-x: auto;
   font-size: 15px;
+  font-family: inherit;
   /* direction: rtl; */
 }
 
@@ -26,5 +27,6 @@
   vertical-align: bottom;
   border-top: 2px solid black;
   font-size: 30px;
+  font-family: inherit;
   direction: ltr;
 }

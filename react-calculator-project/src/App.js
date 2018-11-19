@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+// import ReactDOM from "react-dom";
 import KeyBoard from './components/KeyBoard';
 import Display from './components/Display';
 import './App.css';
 
-class App extends Component {
+const math = require('mathjs');
+
+class MainDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,6 +19,7 @@ class App extends Component {
       operations: ['/', '*', '-', '+']
     };
 
+    this.handleKeyBoard = this.handleKeyBoard.bind(this);
     this.handleNumClick = this.handleNumClick.bind(this);
     this.handleDecimal = this.handleDecimal.bind(this);
     this.handleOperations = this.handleOperations.bind(this);
@@ -24,21 +28,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener('keyup', event => {
-      const { numbers, operations } = this.state;
-
-      if (numbers.indexOf(event.key) !== -1) {
-        this.handleNumClick(event.key);
-      } else if (operations.indexOf(event.key) !== -1) {
-        this.handleOperations(event.key);
-      } else if (event.key === '.') {
-        this.handleDecimal();
-      } else if (event.key === 'Enter') {
-        this.handleButtonEquals();
-      } else if (event.key === 'Clear') {
-        this.handleButtonReset();
-      }
-    });
+    document.addEventListener('keydown', event => this.handleKeyBoard(event));
   }
 
   // to place the scroll of the input placed in the rightmost when oveflow occurs
@@ -48,28 +38,46 @@ class App extends Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keyup', event => {
-      const valuesArray = [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        '/',
-        '*',
-        '-',
-        '+',
-        'Enter'
-      ];
-      if (valuesArray.indexOf(event.key) !== -1) {
-        this.handleButtonClick(event.key);
+    document.removeEventListener('keydown', event =>
+      this.handleKeyBoard(event)
+    );
+  }
+
+  handleKeyBoard(event) {
+    const { numbers, operations } = this.state;
+
+    // function to change the button color when keypress
+
+    function changeStyle() {
+      const button = document.getElementsByName(event.key);
+
+      if (event.key === 'Clear') {
+        button[0].className += ' pressed-ac';
+      } else {
+        button[0].className += ' pressed-button';
       }
-    });
+
+      // disable firefox hotkeys like quick search with /
+      event.preventDefault();
+
+      setTimeout(() => {
+        button[0].classList.remove('pressed-button', 'pressed-ac');
+      }, 100);
+    }
+
+    changeStyle();
+
+    if (numbers.indexOf(event.key) !== -1) {
+      this.handleNumClick(event.key);
+    } else if (operations.indexOf(event.key) !== -1) {
+      this.handleOperations(event.key);
+    } else if (event.key === '.') {
+      this.handleDecimal();
+    } else if (event.key === 'Enter') {
+      this.handleButtonEquals();
+    } else if (event.key === 'Clear') {
+      this.handleButtonReset();
+    }
   }
 
   handleNumClick(keyVal) {
@@ -78,6 +86,8 @@ class App extends Component {
     let newDisplay = display.slice();
 
     if (display.length === 10) {
+      // es-lint wrong rule check for this case
+      // eslint-disable-next-line react/no-unused-state
       this.setState({ displaylimitReached: true });
       return;
     }
@@ -109,6 +119,8 @@ class App extends Component {
     let newDisplay = display.slice();
 
     if (display.length === 10) {
+      // es-lint wrong rule check for this case
+      // eslint-disable-next-line react/no-unused-state
       this.setState({ displaylimitReached: true });
       return;
     }
@@ -156,8 +168,14 @@ class App extends Component {
       }
 
       // no operations in the beginning and no consectuive operations in the input
-      if (input !== '' && operations.indexOf(lastCharInput) === -1) {
-        newInput = newInput.concat(keyVal);
+      if (input !== '') {
+        if (operations.indexOf(lastCharInput) === -1) {
+          newInput = newInput.concat(keyVal);
+        } else {
+          // replaces the operation if wrong input
+          newInput = newInput.slice(0, newInput.length - 1).concat(keyVal);
+        }
+
         this.setState({ input: newInput, display: keyVal, readyCalc: true });
       }
     }
@@ -184,9 +202,10 @@ class App extends Component {
       readyCalc === true &&
       err === false
     ) {
-      const command = `return(${newInput})`;
+      // clean input first as a security measure.
+      newInput = newInput.replace(/[^-()\d/*+.]/g, '');
 
-      const computed = new Function(command)();
+      const computed = math.eval(newInput);
 
       let newResult = String(Math.round(computed * 10000) / 10000);
 
@@ -231,10 +250,13 @@ class App extends Component {
           handleButtonEquals={this.handleButtonEquals}
           handleButtonReset={this.handleButtonReset}
         />
-        <div> Designed by Niccolo Lampa. For demo purposes only.</div>
+        <div className="author">
+          Coded by Niccolo Lampa. For demo purposes only.
+        </div>
+        <div className="author">Email niccololampa@gmail.com</div>
       </div>
     );
   }
 }
 
-export default App;
+export default MainDisplay;
