@@ -231,6 +231,7 @@ class App extends Component {
           handleButtonEquals={this.handleButtonEquals}
           handleButtonReset={this.handleButtonReset}
         />
+        <div> Designed by Niccolo Lampa. For demo purposes only.</div>
       </div>
     );
   }

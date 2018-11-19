@@ -89,6 +89,14 @@ th {
   outline: none;
 }
 
+.author {
+  font-family: 'Orbitron', sans-serif;
+  color: #999999;
+  font-size: 15px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
 @media (max-width: 800px) {
   .edit-area-non-active {
     width: 100%;

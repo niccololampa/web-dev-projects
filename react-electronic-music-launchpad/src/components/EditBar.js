@@ -33,6 +33,10 @@ function EditBar(props) {
         </div>
         {editMode ? 'DONE' : 'ADD / CUSTOM'}
       </button>
+      <div className="author">
+        Created by Niccolo Lampa. For React demo purposes only. Email
+        niccololampa@gmail.com
+      </div>
     </div>
   );
 }
