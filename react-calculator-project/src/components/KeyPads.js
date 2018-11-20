@@ -2,7 +2,7 @@ import React from 'react';
 
 // Buttons Component
 
-function KeyPads(props) {
+function Keypads(props) {
   const { buttonId, buttonValue, name, classStyle, handleButtonClick } = props;
 
   return (
@@ -19,4 +19,4 @@ function KeyPads(props) {
   );
 }
 
-export default KeyPads;
+export default Keypads;

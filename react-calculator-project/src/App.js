@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import ReactDOM from "react-dom";
-import KeyBoard from './components/KeyBoard';
+import Keyboard from './components/Keyboard';
 import Display from './components/Display';
 import './App.css';
 
@@ -19,7 +19,7 @@ class MainDisplay extends Component {
       operations: ['/', '*', '-', '+']
     };
 
-    this.handleKeyBoard = this.handleKeyBoard.bind(this);
+    this.handleKeyboard = this.handleKeyboard.bind(this);
     this.handleNumClick = this.handleNumClick.bind(this);
     this.handleDecimal = this.handleDecimal.bind(this);
     this.handleOperations = this.handleOperations.bind(this);
@@ -28,7 +28,7 @@ class MainDisplay extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener('keydown', event => this.handleKeyBoard(event));
+    document.addEventListener('keydown', event => this.handleKeyboard(event));
   }
 
   // to place the scroll of the input placed in the rightmost when oveflow occurs
@@ -39,30 +39,39 @@ class MainDisplay extends Component {
 
   componentWillUnmount() {
     document.removeEventListener('keydown', event =>
-      this.handleKeyBoard(event)
+      this.handleKeyboard(event)
     );
   }
 
-  handleKeyBoard(event) {
+  handleKeyboard(event) {
     const { numbers, operations } = this.state;
 
     // function to change the button color when keypress
+
+    // disable firefox hotkeys like quick search with /
+    event.preventDefault();
+
+    let keyExist = false;
 
     function changeStyle() {
       const button = document.getElementsByName(event.key);
 
       if (event.key === 'Clear') {
         button[0].className += ' pressed-ac';
-      } else {
+        keyExist = true;
+      } else if (
+        numbers.indexOf(event.key) !== -1 ||
+        operations.indexOf(event.key) !== -1
+      ) {
         button[0].className += ' pressed-button';
+        keyExist = true;
       }
 
-      // disable firefox hotkeys like quick search with /
-      event.preventDefault();
-
-      setTimeout(() => {
-        button[0].classList.remove('pressed-button', 'pressed-ac');
-      }, 100);
+      if (keyExist === true) {
+        setTimeout(() => {
+          button[0].classList.remove('pressed-button', 'pressed-ac');
+        }, 100);
+      }
     }
 
     changeStyle();
@@ -243,7 +252,7 @@ class MainDisplay extends Component {
     return (
       <div className="App">
         <Display input={input} display={display} />
-        <KeyBoard
+        <Keyboard
           handleNumClick={this.handleNumClick}
           handleDecimal={this.handleDecimal}
           handleOperations={this.handleOperations}

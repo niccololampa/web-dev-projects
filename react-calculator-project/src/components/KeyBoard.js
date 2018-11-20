@@ -1,10 +1,10 @@
 import React from 'react';
-import KeyPads from './KeyPads';
-import './KeyBoard.css';
+import Keypads from './Keypads';
+import './Keyboard.css';
 
-// KeyBoard Component collection of KeyPads
+// Keyboard Component collection of Keypads
 
-function KeyBoard(props) {
+function Keyboard(props) {
   const {
     handleNumClick,
     handleDecimal,
@@ -17,21 +17,21 @@ function KeyBoard(props) {
     <div className="keyboard">
       <div className="column-one">
         <div className="normal-rows">
-          <KeyPads
+          <Keypads
             buttonId="clear"
             name="Clear"
             buttonValue="AC"
             classStyle="clear"
             handleButtonClick={handleButtonReset}
           />
-          <KeyPads
+          <Keypads
             buttonId="multiply"
             name="/"
             buttonValue="/"
             classStyle="operation"
             handleButtonClick={handleOperations}
           />
-          <KeyPads
+          <Keypads
             buttonId="times"
             name="*"
             buttonValue="*"
@@ -40,21 +40,21 @@ function KeyBoard(props) {
           />
         </div>
         <div className="normal-rows">
-          <KeyPads
+          <Keypads
             buttonId="seven"
             name="7"
             buttonValue={7}
             classStyle="calc-num"
             handleButtonClick={handleNumClick}
           />
-          <KeyPads
+          <Keypads
             buttonId="eight"
             name="8"
             buttonValue={8}
             classStyle="calc-num"
             handleButtonClick={handleNumClick}
           />
-          <KeyPads
+          <Keypads
             buttonId="nine"
             name="9"
             buttonValue={9}
@@ -63,21 +63,21 @@ function KeyBoard(props) {
           />
         </div>
         <div className="normal-rows">
-          <KeyPads
+          <Keypads
             buttonId="four"
             name="4"
             buttonValue={4}
             classStyle="calc-num"
             handleButtonClick={handleNumClick}
           />
-          <KeyPads
+          <Keypads
             buttonId="five"
             name="5"
             buttonValue={5}
             classStyle="calc-num"
             handleButtonClick={handleNumClick}
           />
-          <KeyPads
+          <Keypads
             buttonId="six"
             name="6"
             buttonValue={6}
@@ -86,21 +86,21 @@ function KeyBoard(props) {
           />
         </div>
         <div className="normal-rows">
-          <KeyPads
+          <Keypads
             buttonId="one"
             name="1"
             buttonValue={1}
             classStyle="calc-num"
             handleButtonClick={handleNumClick}
           />
-          <KeyPads
+          <Keypads
             buttonId="two"
             name="2"
             buttonValue={2}
             classStyle="calc-num"
             handleButtonClick={handleNumClick}
           />
-          <KeyPads
+          <Keypads
             buttonId="three"
             name="3"
             buttonValue={3}
@@ -109,14 +109,14 @@ function KeyBoard(props) {
           />
         </div>
         <div className="bottom-row">
-          <KeyPads
+          <Keypads
             buttonId="zero"
             name="0"
             buttonValue={0}
             classStyle="calc-num"
             handleButtonClick={handleNumClick}
           />
-          <KeyPads
+          <Keypads
             buttonId="decimal"
             name="."
             buttonValue="."
@@ -126,21 +126,21 @@ function KeyBoard(props) {
         </div>
       </div>
       <div className="column-two">
-        <KeyPads
+        <Keypads
           buttonId="subtract"
           name="-"
           buttonValue="-"
           classStyle="subtract"
           handleButtonClick={handleOperations}
         />
-        <KeyPads
+        <Keypads
           buttonId="plus"
           name="+"
           buttonValue="+"
           classStyle="plus"
           handleButtonClick={handleOperations}
         />
-        <KeyPads
+        <Keypads
           buttonId="equals"
           name="Enter"
           buttonValue="="
@@ -152,4 +152,4 @@ function KeyBoard(props) {
   );
 }
 
-export default KeyBoard;
+export default Keyboard;
