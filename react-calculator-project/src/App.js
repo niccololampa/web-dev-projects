@@ -122,7 +122,7 @@ class MainDisplay extends Component {
     }
   }
 
-  handleDecimal(keyVal) {
+  handleDecimal() {
     const { input, display, operations, displayLimitReached, err } = this.state;
     let newInput = input.slice();
     let newDisplay = display.slice();
@@ -149,8 +149,8 @@ class MainDisplay extends Component {
           newInput = newInput.concat('0.');
           newDisplay = '0.';
         } else {
-          newInput = newInput.concat(keyVal);
-          newDisplay = newDisplay.concat(keyVal);
+          newInput = newInput.concat('.');
+          newDisplay = newDisplay.concat('.');
         }
       }
       this.setState({ input: newInput, display: newDisplay });
