@@ -4,12 +4,12 @@ function ControlButton(props) {
   const { id, classStyle, value, clickButtons, buttonDisplay } = props;
 
   return (
-    <div>
+    <div className={classStyle}>
       <button
         type="button"
         id={id}
         value={value}
-        className={classStyle}
+        className={id}
         onClick={() => clickButtons(value)}
       >
         {buttonDisplay}

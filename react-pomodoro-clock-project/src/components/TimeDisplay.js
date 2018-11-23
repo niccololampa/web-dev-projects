@@ -1,12 +1,17 @@
 import React from 'react';
+import './TimeDisplay.css';
 
 function TimeDisplay(props) {
-  const { cycle, display } = props;
+  const { sessionNow, display } = props;
 
   return (
-    <div>
-      <div id="timer-label"> {cycle}</div>
-      <div id="timer-left"> {display} </div>
+    <div className="time-display">
+      <div id="timer-label" className="timer-label">
+        {sessionNow ? 'SESSION' : 'BREAK'}
+      </div>
+      <div id="timer-left" className="timer-left">
+        {`${display.min}:${display.sec < 10 ? 0 : ''}${display.sec}`}{' '}
+      </div>
     </div>
   );
 }

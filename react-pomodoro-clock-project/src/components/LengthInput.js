@@ -6,19 +6,21 @@ function LengthInput(props) {
 
   return (
     <div className={classStyle}>
-      <div id={`${id}-label`}> {purpose}</div>
-      <div className="input-area">
-        <ControlButton
-          id={`${id}-decrement`}
-          value="-"
-          buttonDisplay="-"
-          clickButtons={clickButtons}
-        />
-        <div>{timeLength}</div>
+      <div id={`${id}-label`} className="adjust-label">
+        {purpose}
+      </div>
+      <div className="input-click-area">
         <ControlButton
           id={`${id}-increment`}
           value="+"
           buttonDisplay="+"
+          clickButtons={clickButtons}
+        />
+        <div className="time-length-display">{timeLength}</div>
+        <ControlButton
+          id={`${id}-decrement`}
+          value="-"
+          buttonDisplay="-"
           clickButtons={clickButtons}
         />
       </div>
