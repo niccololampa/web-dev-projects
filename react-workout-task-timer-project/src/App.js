@@ -71,14 +71,16 @@ class MainDisplay extends Component {
   }
 
   handlePlayButtons() {
-    // initialize timer
+    // initialize the timer
     this.timer = setInterval(this.timing, 1000);
+    this.setState({ countdown: true });
   }
 
   handlePauseButton() {
-    document.getElementById('beep').pause();
-    clearInterval(this.timer);
     this.setState({ countdown: false });
+    clearInterval(this.timer);
+    document.getElementById('beep').pause();
+    document.getElementById('beep').load();
   }
 
   handleResetButtons() {
